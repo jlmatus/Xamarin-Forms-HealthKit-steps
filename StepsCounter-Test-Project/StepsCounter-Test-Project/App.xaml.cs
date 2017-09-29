@@ -8,7 +8,7 @@ namespace StepsCounterApp
     {
         InitializeComponent();
 
-        MainPage = new StepsCounter_Test_ProjectPage();
+        MainPage = new MainPage();
     }
 
     protected override void OnStart()

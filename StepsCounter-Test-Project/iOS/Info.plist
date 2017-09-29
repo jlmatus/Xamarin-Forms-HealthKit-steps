@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>StepsCounter-Test-Project</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.rain.stepscounter-test-project</string>
+	<string>com.rain.test.healthkitsample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -42,5 +42,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Privacy - Health Update Usage Description</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>The apps need access to your Health Usage Share</string>
 </dict>
 </plist>
