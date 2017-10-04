@@ -77,12 +77,12 @@ namespace StepsCounterTestProject.iOS
             HealthStore.ExecuteQuery(query);
         }
 
-        void FetchActiveMinutes(Action<double> completionHandler)
+        void FetchMetersWalked(Action<double> completionHandler)
         {
             var calendar = NSCalendar.CurrentCalendar;
             var startDate = DateTime.Today;
             var endDate = DateTime.Now;
-            var stepsQuantityType = HKQuantityType.Create(HKQuantityTypeIdentifier.AppleExerciseTime);
+            var stepsQuantityType = HKQuantityType.Create(HKQuantityTypeIdentifier.DistanceWalkingRunning);
 
             var predicate = HKQuery.GetPredicateForSamples((NSDate)startDate, (NSDate)endDate, HKQueryOptions.StrictStartDate);
 
@@ -92,13 +92,37 @@ namespace StepsCounterTestProject.iOS
                                 if (error != null && completionHandler != null)
                                     completionHandler(0);
 
-                                var totalMinutes = results.SumQuantity();
-                                if (totalMinutes == null)
-                                    totalMinutes = HKQuantity.FromQuantity(HKUnit.Minute, 0);
+                                var distance = results.SumQuantity();
+                                if (distance == null)
+                                    distance = HKQuantity.FromQuantity(HKUnit.Meter, 0);
 
-                                completionHandler(totalMinutes.GetDoubleValue(HKUnit.Minute));
+                                completionHandler(distance.GetDoubleValue(HKUnit.Meter));
                             });
             HealthStore.ExecuteQuery(query);
         }
+
+		void FetchActiveMinutes(Action<double> completionHandler)
+		{
+			var calendar = NSCalendar.CurrentCalendar;
+			var startDate = DateTime.Today;
+			var endDate = DateTime.Now;
+			var stepsQuantityType = HKQuantityType.Create(HKQuantityTypeIdentifier.AppleExerciseTime);
+
+			var predicate = HKQuery.GetPredicateForSamples((NSDate)startDate, (NSDate)endDate, HKQueryOptions.StrictStartDate);
+
+			var query = new HKStatisticsQuery(stepsQuantityType, predicate, HKStatisticsOptions.CumulativeSum,
+							(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) =>
+							{
+								if (error != null && completionHandler != null)
+									completionHandler(0);
+
+								var totalMinutes = results.SumQuantity();
+								if (totalMinutes == null)
+									totalMinutes = HKQuantity.FromQuantity(HKUnit.Minute, 0);
+
+								completionHandler(totalMinutes.GetDoubleValue(HKUnit.Minute));
+							});
+			HealthStore.ExecuteQuery(query);
+		}
     }
 }
