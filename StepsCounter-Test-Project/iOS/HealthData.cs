@@ -12,7 +12,6 @@ namespace StepsCounterTestProject.iOS
     public class HealthData : IHealthData
     {
         NSNumberFormatter numberFormatter;
-        List<Task> tasks = new List<Task>();
         public HKHealthStore HealthStore { get; set; }
 
         NSSet DataTypesToWrite
@@ -32,7 +31,11 @@ namespace StepsCounterTestProject.iOS
                 return NSSet.MakeNSObjectSet<HKObjectType>(new HKObjectType[] {
                     HKQuantityType.Create(HKQuantityTypeIdentifier.Height),
                     HKCharacteristicType.Create(HKCharacteristicTypeIdentifier.DateOfBirth),
-                    HKQuantityType.Create(HKQuantityTypeIdentifier.StepCount)
+                    HKQuantityType.Create(HKQuantityTypeIdentifier.StepCount),
+                    HKQuantityType.Create(HKQuantityTypeIdentifier.DistanceWalkingRunning),
+                    HKQuantityType.Create(HKQuantityTypeIdentifier.AppleExerciseTime),
+                    HKQuantityType.Create(HKQuantityTypeIdentifier.ActiveEnergyBurned),
+                    HKQuantityType.Create(HKQuantityTypeIdentifier.HeartRate)
                 });
             }
         }
@@ -77,7 +80,7 @@ namespace StepsCounterTestProject.iOS
             HealthStore.ExecuteQuery(query);
         }
 
-        void FetchMetersWalked(Action<double> completionHandler)
+        public void FetchMetersWalked(Action<double> completionHandler)
         {
             var calendar = NSCalendar.CurrentCalendar;
             var startDate = DateTime.Today;
@@ -101,7 +104,7 @@ namespace StepsCounterTestProject.iOS
             HealthStore.ExecuteQuery(query);
         }
 
-		void FetchActiveMinutes(Action<double> completionHandler)
+		public void FetchActiveMinutes(Action<double> completionHandler)
 		{
 			var calendar = NSCalendar.CurrentCalendar;
 			var startDate = DateTime.Today;
@@ -124,5 +127,31 @@ namespace StepsCounterTestProject.iOS
 							});
 			HealthStore.ExecuteQuery(query);
 		}
+
+
+		public void FetchActiveEnergyBurned(Action<double> completionHandler)
+		{
+			var calendar = NSCalendar.CurrentCalendar;
+			var startDate = DateTime.Today;
+			var endDate = DateTime.Now;
+			var stepsQuantityType = HKQuantityType.Create(HKQuantityTypeIdentifier.ActiveEnergyBurned);
+
+			var predicate = HKQuery.GetPredicateForSamples((NSDate)startDate, (NSDate)endDate, HKQueryOptions.StrictStartDate);
+
+			var query = new HKStatisticsQuery(stepsQuantityType, predicate, HKStatisticsOptions.CumulativeSum,
+							(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) =>
+							{
+								if (error != null && completionHandler != null)
+									completionHandler(0);
+
+								var energyBurned = results.SumQuantity();
+								if (energyBurned == null)
+									energyBurned = HKQuantity.FromQuantity(HKUnit.Calorie, 0);
+
+								completionHandler(energyBurned.GetDoubleValue(HKUnit.Calorie));
+							});
+			HealthStore.ExecuteQuery(query);
+		}
+		
     }
 }
