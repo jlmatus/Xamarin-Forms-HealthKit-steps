@@ -11,19 +11,41 @@ using StepsCounterApp;
 
 namespace StepsCounterTestProject.Droid
 {
-    [Activity(Label = "StepsCounter-Test-Project.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
-    {
-        protected override void OnCreate(Bundle bundle)
-        {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+	public class ActivityResultEventArgs : EventArgs
+	{
+		public int RequestCode { get; set; }
+		public Result ResultCode { get; set; }
+		public Intent Data { get; set; }
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+	}
 
-            LoadApplication(new App());
-        }
-    }
+	[Activity(Label = "StepsCounter-Test-Project.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+	{
+		public event EventHandler<ActivityResultEventArgs> ActivityResult = delegate { };
+
+		protected override void OnCreate(Bundle bundle)
+		{
+			TabLayoutResource = Resource.Layout.Tabbar;
+			ToolbarResource = Resource.Layout.Toolbar;
+
+			base.OnCreate(bundle);
+
+			global::Xamarin.Forms.Forms.Init(this, bundle);
+
+			LoadApplication(new App());
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			ActivityResult(this, new ActivityResultEventArgs
+			{
+				RequestCode = requestCode,
+				ResultCode = resultCode,
+				Data = data
+			});
+		}
+	}
+
 }

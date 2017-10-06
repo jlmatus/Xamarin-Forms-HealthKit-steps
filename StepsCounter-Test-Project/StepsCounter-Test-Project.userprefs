@@ -1,25 +1,27 @@
-﻿<Properties StartupConfiguration="{A072A4FB-DD01-45A4-A092-1A8BF309EDAE}|Default">
-  <MonoDevelop.Ide.ItemProperties.StepsCounter-Test-Project.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.A01326A2-3068-4D53-839B-6964C5499431" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/HealthData.cs">
+﻿<Properties StartupConfiguration="{A9EA4BFB-A682-4EFC-8428-0E54FCDD92C6}|Default">
+  <MonoDevelop.Ide.ItemProperties.StepsCounter-Test-Project.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F910F627-0EFB-4B72-B883-8DAB32F6A528" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StepsCounter-Test-Project/MainPage.xaml.cs">
     <Files>
       <File FileName="iOS/Main.cs" Line="17" Column="1" />
-      <File FileName="StepsCounter-Test-Project/App.xaml" Line="7" Column="1" />
-      <File FileName="StepsCounter-Test-Project/MainPage.xaml" Line="3" Column="48" />
-      <File FileName="StepsCounter-Test-Project/HealthInterface.cs" Line="7" Column="5" />
-      <File FileName="iOS/HealthData.cs" Line="9" Column="1" />
-      <File FileName="iOS/Info.plist" />
+      <File FileName="StepsCounter-Test-Project/HealthInterface.cs" Line="12" Column="72" />
+      <File FileName="iOS/HealthData.cs" Line="9" Column="18" />
       <File FileName="StepsCounter-Test-Project/App.xaml.cs" Line="11" Column="32" />
-      <File FileName="StepsCounter-Test-Project/MainPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="Droid/HealthData.cs" Line="1" Column="1" />
+      <File FileName="StepsCounter-Test-Project/MainPage.xaml.cs" Line="31" Column="1" />
+      <File FileName="Droid/HealthData.cs" Line="108" Column="35" />
+      <File FileName="Droid/MainActivity.cs" Line="15" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/jose/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/StepsCounter-Test-Project/MainPage.xaml.cs" relfile="StepsCounter-Test-Project/MainPage.xaml.cs" line="111" column="1" />
-      <Breakpoint file="/Users/jose/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/StepsCounter-Test-Project/MainPage.xaml.cs" relfile="StepsCounter-Test-Project/MainPage.xaml.cs" line="112" column="23" />
+      <Breakpoint file="/Users/jlmatus/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/StepsCounter-Test-Project/MainPage.xaml.cs" relfile="StepsCounter-Test-Project/MainPage.xaml.cs" line="111" column="1" />
+      <Breakpoint file="/Users/jlmatus/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/StepsCounter-Test-Project/MainPage.xaml.cs" relfile="StepsCounter-Test-Project/MainPage.xaml.cs" line="112" column="23" />
+      <Breakpoint file="/Users/jlmatus/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/Droid/HealthData.cs" relfile="Droid/HealthData.cs" line="128" column="1" />
+      <Breakpoint file="/Users/jlmatus/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/Droid/HealthData.cs" relfile="Droid/HealthData.cs" line="137" column="1" />
+      <Breakpoint file="/Users/jlmatus/Xamarin-Forms-HealthKit-steps/StepsCounter-Test-Project/StepsCounter-Test-Project/MainPage.xaml.cs" relfile="StepsCounter-Test-Project/MainPage.xaml.cs" line="31" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.StepsCounter-Test-Project.Droid PreferredExecutionTarget="Android.FA44SSF02181" />
   <MultiItemStartupConfigurations />
 </Properties>
