@@ -29,7 +29,7 @@ namespace StepsCounterApp
             {
                 var a = result;
                 if (result)
-                {
+                { /*
                     DependencyService.Get<IHealthData>().FetchSteps((totalSteps) =>
                     {
 						Device.BeginInvokeOnMainThread(() =>
@@ -99,7 +99,7 @@ namespace StepsCounterApp
                     {
                         //this.Label1.Text = "Total steps today: " + Math.Floor(steps).ToString() + " Meters Walked " + Math.Floor(meters).ToString() + " Active minutes " + Math.Floor(minutes).ToString();
                     });
-
+					*/
                 }
             });
 
