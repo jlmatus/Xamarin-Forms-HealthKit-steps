@@ -61,7 +61,7 @@ namespace StepsCounterTestProject.Droid
 				.AddConnectionCallbacks(this)
 				.AddApi(FitnessClass.HISTORY_API)
 				.AddScope(new Scope(Scopes.FitnessActivityReadWrite))
-			    .AddScope(new Scope(Scopes.FitnessLocationRead))
+				.AddScope(new Scope(Scopes.FitnessLocationRead))
 				.AddOnConnectionFailedListener(result =>
 				{
 					Log.Info("apiClient", "Connection failed. Cause: " + result);
@@ -128,6 +128,7 @@ namespace StepsCounterTestProject.Droid
 			FetchGoogleFitSteps();
 			FetchGoogleFitCalories();
 			FetchGoogleFitDistance();
+			FetchGoogleFitActiveMinutes();
 		}
 
 		public void OnDisconnected()
@@ -222,6 +223,28 @@ namespace StepsCounterTestProject.Droid
 			return calories;
 		}
 
+		public async Task<double> FetchGoogleFitActiveMinutes()
+		{
+			DataReadRequest readRequest = queryActiveEnergy();
+
+			var dataReadResult = await FitnessClass.HistoryApi.ReadDataAsync(mGoogleApiClient, readRequest);
+			var totalActiveTime = 0.0;
+			if (dataReadResult.Buckets.Count > 0)
+			{
+				foreach (Bucket bucket in dataReadResult.Buckets)
+				{
+					if (bucket.Activity.Contains(FitnessActivities.Walking) || bucket.Activity.Contains(FitnessActivities.Running))
+					{
+						long activeTime = bucket.GetEndTime(TimeUnit.Minutes) - bucket.GetStartTime(TimeUnit.Minutes);
+						totalActiveTime = totalActiveTime + activeTime;
+
+					}
+				}
+			}
+			PrintData(dataReadResult);
+			return totalActiveTime;
+		}
+
 		static double GetDataSetValuesSum(DataSet dataSet)
 		{
 			var dataSetSum = 0.0;
@@ -307,6 +330,7 @@ namespace StepsCounterTestProject.Droid
 
 			return readRequest;
 		}
+
 
 		static long GetMsSinceEpochAsLong(DateTime dateTime)
 		{
