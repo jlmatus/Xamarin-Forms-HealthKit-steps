@@ -22,10 +22,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)HealthInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PageHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AuthenticationState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FITBIT\OAuth.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FITBIT\OAuth2.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)FITBIT\" />
   </ItemGroup>
 </Project>

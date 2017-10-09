@@ -1,11 +1,11 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StepsCounter-Test-Project", "StepsCounter-Test-Project\StepsCounter-Test-Project.shproj", "{AD71581A-7199-4557-82B6-F38D1798FF6D}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StepsCounterApp", "StepsCounter-Test-Project\StepsCounterApp.shproj", "{AD71581A-7199-4557-82B6-F38D1798FF6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepsCounter-Test-Project.iOS", "iOS\StepsCounter-Test-Project.iOS.csproj", "{A072A4FB-DD01-45A4-A092-1A8BF309EDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepsCounter-Test-Project.Droid", "Droid\StepsCounter-Test-Project.Droid.csproj", "{A9EA4BFB-A682-4EFC-8428-0E54FCDD92C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepsCounterApp.Droid", "Droid\StepsCounterApp.Droid.csproj", "{A9EA4BFB-A682-4EFC-8428-0E54FCDD92C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

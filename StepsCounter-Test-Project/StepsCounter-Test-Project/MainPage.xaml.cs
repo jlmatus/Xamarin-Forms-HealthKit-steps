@@ -1,29 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Auth.XamarinForms;
+using Xamarin.Auth;
 using Xamarin.Forms;
+using System.Text;
 
 namespace StepsCounterApp
 {
-    public partial class MainPage : ContentPage
+    public partial class MainContentPage : ContentPage
     {
-        public MainPage()
+
+        bool launched = false;
+        protected Xamarin.Auth.WebAuthenticator authenticator = null;
+        public MainContentPage()
         {
-            InitializeComponent();
+            //InitializeComponent();
+            initializeAuthenticator();
+            // iterate over a collection adding tasks to the dispatch group
+
+
         }
+
+
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            FetchHealthData();
+            //FetchHealthData();
+            if (launched == false)
+            {
+                AuthenticationState.Authenticator = authenticator;
+                PageHelpers.PresentUILoginScreen(this,authenticator);
+                //PresentUILoginScreen(authenticator);
+                launched = true;
+            }
+        }
 
-            // iterate over a collection adding tasks to the dispatch group
+        void initializeAuthenticator()
+        {
+            authenticator = new OAuth2Authenticator(
+                 "228N3T",
+                 null,
+                 "profile activity heartrate weight  location",
+                 new Uri("https://www.fitbit.com/oauth2/authorize"),
+                 new Uri("StepsCounter://"),
+                 new Uri("https://api.fitbit.com/oauth2/token"),
+                 null,
+                 true);
+            authenticator.Completed += OnAuthCompleted;
 
+			authenticator.Error +=
+				(s, ea) =>
+				{
+					StringBuilder sb = new StringBuilder();
+					sb.Append("Error = ").AppendLine($"{ea.Message}");
+
+					DisplayAlert
+							(
+								"Authentication Error",
+								sb.ToString(),
+								"OK"
+							);
+					return;
+				};
+        }
+
+        async void OnAuthCompleted(object sender, AuthenticatorCompletedEventArgs e)
+        {
+            var a = e;
         }
 
         void FetchHealthData()
         {
-            
+
             List<Task> tasks = new List<Task>();
             DependencyService.Get<IHealthData>().GetHealthPermissionAsync((result) =>
             {
@@ -103,6 +153,6 @@ namespace StepsCounterApp
                 }
             });
 
-        }
+        }       
     }
 }

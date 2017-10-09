@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>StepsCounter-Test-Project</string>
-	<key>CFBundleName</key>
-	<string>StepsCounter-Test-Project</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.rain.test.healthkitsample</string>
 	<key>CFBundleShortVersionString</key>
@@ -46,5 +42,20 @@
 	<string>Privacy - Health Update Usage Description</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>The apps need access to your Health Usage Share</string>
+	<key>CFBundleName</key>
+	<string>StepsCounter</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>Xamarin.Auth Fitbit</string>
+			<key>CFBundleURLTypes</key>
+			<string>Viewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>StepsCounter</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
